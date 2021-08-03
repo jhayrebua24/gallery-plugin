@@ -1,38 +1,207 @@
-.App {
-  text-align: center;
+.open-modal {
+  overflow: hidden !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --gallery-row-height: 100px;
+  --gallery-gap: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.gallery-container {
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  margin-bottom: calc(-1 * var(--gallery-gap, 1em));
+  margin-left: calc(-1 * var(--gallery-gap, 1em));
+}
+.gallery-container:after {
+  content: "";
+  flex-grow: 999999999;
+  min-width: var(--gallery-row-height);
+  height: 0;
+}
+.gallery-container > * {
+  display: block;
+  height: var(--gallery-row-height);
+  flex-grow: 1;
+  margin-bottom: var(--gallery-gap, 1em);
+  margin-left: var(--gallery-gap, 1em);
+  overflow: hidden;
+}
+.gallery-container > * > img {
+  height: var(--gallery-row-height);
+  object-fit: cover;
+  max-width: 100%;
+  min-width: 100%;
+  vertical-align: bottom;
+}
+
+.gallery-container > * > img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    --gallery-row-height: 150px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  :root {
+    --gallery-row-height: 300px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* The Modal (background) */
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  /* overflow: auto; */
+}
+
+/* Modal Content */
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: auto;
+  width: 100%;
+  height: calc(100vh);
+  padding: 20px 0;
+}
+
+.modal-content {
+  z-index: 2;
   display: flex;
-  flex-direction: column;
+  margin: auto;
+  width: 98%;
+  max-width: 1200px;
+  height: 600px;
+}
+
+.modal-body {
+  flex: 1;
+  height: 100%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  margin-top: -10px;
+  margin-left: 15px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wrapper {
+  display: flex;
+  color: white;
+  background-color: #2d2d2d;
+}
+
+.wrapper .img-wrapper {
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.img-wrapper img {
+  object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.img-details {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  padding: 60px 30px 15px 30px;
+}
+
+.img-details h1 {
+  font-size: 24px;
+  font-weight: 800;
+  padding: 0;
+  margin: 0;
+}
+
+.img-details p {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.user-details {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.user-details img {
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+}
+
+.user-text {
+  padding-left: 20px;
+}
+
+.user-text .name {
+  font-size: 16px;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+}
+
+.user-text .title {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.divider {
+  margin: 10px 0;
+  height: 1.5px;
+  width: 30%;
+  background-color: #808080;
+}
+
+@media (max-width: 960px) {
+  .modal-content {
+    margin-bottom: calc(100vh - 400px);
   }
-  to {
-    transform: rotate(360deg);
+
+  .wrapper {
+    flex-wrap: wrap;
+    margin-bottom: calc(100vh - 400px);
+  }
+
+  .wrapper .img-wrapper {
+    width: 100%;
+    height: 200px;
+  }
+  .wrapper .img-details {
+    padding: 30px 30px 60px 30px;
+    width: 100%;
   }
 }

@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { getPhotos } from "./actions";
+import { useEffect, useMemo, useState } from "react";
+import ImageDetails from "./components/ImageDetails";
 
 function App() {
+  const [photos, setPhotos] = useState({});
+  const [selectedPhoto, setSelectedPhoto] = useState({});
+
+  const handleClose = () => setSelectedPhoto({});
+  const [filter, setFilter] = useState("new");
+
+  const filteredPhotos = useMemo(() => {
+    if (photos[filter] && Array.isArray(photos[filter])) return photos[filter];
+    return [];
+  }, [photos, filter]);
+  useEffect(() => {
+    getPhotos().then(setPhotos);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="gallery-container">
+      {filteredPhotos.map((photos) => (
+        <div key={photos.id}>
+          <img
+            onClick={() => setSelectedPhoto(photos)}
+            src={photos.img}
+            alt={photos.title}
+          />
+        </div>
+      ))}
+      <ImageDetails data={selectedPhoto} handleClose={handleClose} />
     </div>
   );
 }
