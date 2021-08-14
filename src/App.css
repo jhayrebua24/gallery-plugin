@@ -1,3 +1,48 @@
+.gallery-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #2d2d2d;
+  height: 100%;
+  width: 100%;
+  padding: 50px 0;
+}
+
+.filter-menu {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid gray;
+}
+
+.filter-menu button {
+  outline: none;
+  font-size: 14px;
+  font-weight: 900;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  background: 0;
+  padding: 0 25px 20px 25px;
+  height: 40px;
+  border: 0;
+  text-transform: uppercase;
+  margin-bottom: -1px;
+  /* color: #ea1f5e; */
+}
+
+.filter-menu .active {
+  color: #ea1f5e;
+  border-bottom: 3px solid #ea1f5e;
+}
+
+.filter-menu button:first-child {
+  padding-left: 5px;
+}
+
+.filter-menu button:hover {
+  color: #ea1f5e;
+  border-bottom: 3px solid #ea1f5e;
+}
+
 .open-modal {
   overflow: hidden !important;
 }
@@ -8,6 +53,7 @@
 }
 
 .gallery-container {
+  margin-top: 40px;
   display: flex;
   overflow: hidden;
   flex-wrap: wrap;
@@ -59,16 +105,18 @@
   z-index: 1;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-  /* overflow: auto; */
+  overflow-y: auto;
 }
 
 /* Modal Content */
 .overlay {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
@@ -77,20 +125,21 @@
   width: 100%;
   height: calc(100vh);
   padding: 20px 0;
+  background-color: gray;
 }
 
 .modal-content {
   z-index: 2;
   display: flex;
-  margin: auto;
+  margin: calc(3vh) auto;
+  min-height: calc(100vh - 100px);
   width: 98%;
-  max-width: 1200px;
-  height: 600px;
+  max-width: 1600px;
 }
 
 .modal-body {
   flex: 1;
-  height: 100%;
+  flex-grow: 1;
 }
 
 /* The Close Button */
@@ -113,11 +162,14 @@
   display: flex;
   color: white;
   background-color: #2d2d2d;
+  flex-grow: 1;
+  height: 100%;
 }
 
 .wrapper .img-wrapper {
   width: 100%;
-  height: 600px;
+  height: 100%;
+  min-height: 600px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -134,11 +186,11 @@
   display: flex;
   flex-direction: column;
   width: 25%;
-  padding: 60px 30px 15px 30px;
+  padding: 30px 30px 15px 30px;
 }
 
 .img-details h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 800;
   padding: 0;
   margin: 0;
@@ -146,7 +198,7 @@
 
 .img-details p {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .user-details {
@@ -188,12 +240,10 @@
 
 @media (max-width: 960px) {
   .modal-content {
-    margin-bottom: calc(100vh - 400px);
   }
 
   .wrapper {
     flex-wrap: wrap;
-    margin-bottom: calc(100vh - 400px);
   }
 
   .wrapper .img-wrapper {

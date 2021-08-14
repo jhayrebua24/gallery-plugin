@@ -19,7 +19,7 @@ const formatDummyData = (d = []) =>
       randomImg[Math.floor(Math.random() * 3 + 1) - 1]
     }`,
     title,
-    description: `${title} ${title} ${title}  ${title} ${title} ${title} ${title}`,
+    description: `${title} ${title} ${title}  ${title} ${title}`,
     user: {
       id,
       first_name: "Candela",

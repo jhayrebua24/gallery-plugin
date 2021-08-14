@@ -13,28 +13,28 @@ function Modal({ children, show, handleClose }) {
       style={{
         display: show ? "block" : "none",
       }}
-      // onClick={(e) => {
-      //   console.log(e.currentTarget);
-      //   if (e.target !== e.currentTarget) return;
-      //   handleClose();
-      // }}
+      onClick={(e) => {
+        console.log(e.currentTarget);
+        if (e.target !== e.currentTarget) return;
+        handleClose();
+      }}
       ref={modal}
     >
-      <div
+      {/* <div
         className="overlay"
         onClick={(e) => {
           console.log(e.currentTarget);
           if (e.target !== e.currentTarget) return;
           handleClose();
         }}
-      >
-        <div className="modal-content">
-          <div className="modal-body">{children}</div>
-          <span type="button" className="close" onClick={handleClose}>
-            &times;
-          </span>
-        </div>
+      > */}
+      <div className="modal-content">
+        <div className="modal-body">{children}</div>
+        <span type="button" className="close" onClick={handleClose}>
+          &times;
+        </span>
       </div>
+      {/* </div> */}
     </div>
   );
 }
